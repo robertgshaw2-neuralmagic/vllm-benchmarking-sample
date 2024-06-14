@@ -1,10 +1,8 @@
-# vLLM Acceleration with Marlin
+# vLLM Acceleration with Quantization (Marlin)
 
 This this example, we will demonstrate how to benchmark vLLM. 
 
-We will compare the speed of an Fp16 model to an Int4 model using Marlin kernels for inference acceleration.
-
-Check out our [technical blog](https://neuralmagic.com/blog/pushing-the-boundaries-of-mixed-precision-llm-inference-with-marlin/) for more details on how Marlin works.
+We will compare the speed of an Fp16 model to an Int4 model using Marlin kernels for inference acceleration. Check out our [technical blog](https://neuralmagic.com/blog/pushing-the-boundaries-of-mixed-precision-llm-inference-with-marlin/) for more details on how Marlin works.
 
 > Note: this example requires Ampere GPUs or later.
 
