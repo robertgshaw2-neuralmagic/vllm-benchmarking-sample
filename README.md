@@ -6,13 +6,7 @@ We will compare the speed of an Fp16 model to an Int4 model using Marlin kernels
 
 > Note: this example requires Ampere GPUs or later.
 
-## Launch 4 Bit Model
-
-We can use `nm-testing/Meta-Llama-3-8B-Instruct-GPTQ`, which is posted on the Hugging Face hub.
-
-Download the docker image to get started:
-
-### Install
+## Install
 
 Install vLLM:
 
@@ -22,7 +16,11 @@ source env/bin/activate
 pip install vllm
 ```
 
-### Deploy INT4 Model
+## Benchmark 4bit Model
+
+We can use `nm-testing/Meta-Llama-3-8B-Instruct-GPTQ`, which is posted on the Hugging Face hub.
+
+### Deploy
 
 Launch:
 
@@ -32,7 +30,7 @@ python -m vllm.entrypoints.openai.api_server \
     --disable-log-requests
 ```
 
-### Benchmark the INT4 Model
+### Benchmark
 
 When evaluating LLM performance, there are two latency metrics to consider. 
 - TTFT (Time to first token) measures how long it takes to generate the first token. 
