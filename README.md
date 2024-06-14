@@ -70,28 +70,6 @@ python3 benchmark_serving.py \
     --dataset-path ShareGPT_V3_unfiltered_cleaned_split.json
 ```
 
-We can see that the quantized models gets `7.79ms` TPOT.
-
-```bash
-============ Serving Benchmark Result ============
-Successful requests:                     200       
-Benchmark duration (s):                  201.45    
-Total input tokens:                      45551     
-Total generated tokens:                  39243     
-Request throughput (req/s):              0.99      
-Input token throughput (tok/s):          226.11    
-Output token throughput (tok/s):         194.80    
----------------Time to First Token----------------
-Mean TTFT (ms):                          28.04     
-Median TTFT (ms):                        19.79     
-P99 TTFT (ms):                           87.08     
------Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          7.79      
-Median TPOT (ms):                        7.66      
-P99 TPOT (ms):                           11.86     
-==================================================
-```
-
 ### Deploy FP16 Model
 
 Now, let's deploy the FP16 model.
@@ -113,26 +91,4 @@ python3 benchmark_serving.py \
     --request-rate 1.0 \
     --num-prompts 200 \
     --dataset-path ShareGPT_V3_unfiltered_cleaned_split.json
-```
-
-We can see the fp16 models get `39ms` TPOT, about 3.5x slower than the INT4 model.
-
-```bash
-============ Serving Benchmark Result ============
-Successful requests:                     200       
-Benchmark duration (s):                  202.45    
-Total input tokens:                      45551     
-Total generated tokens:                  39184     
-Request throughput (req/s):              0.99      
-Input token throughput (tok/s):          225.00    
-Output token throughput (tok/s):         193.55    
----------------Time to First Token----------------
-Mean TTFT (ms):                          31.13     
-Median TTFT (ms):                        26.33     
-P99 TTFT (ms):                           74.68     
------Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          13.15     
-Median TPOT (ms):                        13.01     
-P99 TPOT (ms):                           17.75     
-==================================================
 ```
