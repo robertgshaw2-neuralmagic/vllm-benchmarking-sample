@@ -16,7 +16,7 @@ source env/bin/activate
 pip install vllm
 ```
 
-## Benchmark 4bit Model
+## Benchmark int4 Model
 
 We can use `nm-testing/Meta-Llama-3-8B-Instruct-GPTQ`, which is posted on the Hugging Face hub.
 
@@ -66,9 +66,11 @@ python3 benchmark_serving.py \
     --dataset-path ShareGPT_V3_unfiltered_cleaned_split.json
 ```
 
-### Deploy FP16 Model
+## Benchmark fp16 Model
 
-Now, let's deploy the FP16 model.
+### Deploy
+
+Launch:
 
 ```bash
 python -m vllm.entrypoints.openai.api_server \
@@ -76,7 +78,7 @@ python -m vllm.entrypoints.openai.api_server \
     --disable-log-requests
 ```
 
-### Benchmark the FP16 Model
+#### Run the Benchmark
 
 We can use the same script, just swapping out the model. We run 1 query per second.
 
