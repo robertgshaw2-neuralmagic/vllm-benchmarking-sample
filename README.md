@@ -118,13 +118,21 @@ python3 benchmark_serving.py \
 We can see the fp16 models get `39ms` TPOT, about 3.5x slower than the INT4 model.
 
 ```bash
+============ Serving Benchmark Result ============
+Successful requests:                     200       
+Benchmark duration (s):                  202.45    
+Total input tokens:                      45551     
+Total generated tokens:                  39184     
+Request throughput (req/s):              0.99      
+Input token throughput (tok/s):          225.00    
+Output token throughput (tok/s):         193.55    
 ---------------Time to First Token----------------
-Mean TTFT (ms):                          97.13     
-Median TTFT (ms):                        66.12     
-P99 TTFT (ms):                           311.50    
+Mean TTFT (ms):                          31.13     
+Median TTFT (ms):                        26.33     
+P99 TTFT (ms):                           74.68     
 -----Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          38.85     
-Median TPOT (ms):                        39.36     
-P99 TPOT (ms):                           47.97     
+Mean TPOT (ms):                          13.15     
+Median TPOT (ms):                        13.01     
+P99 TPOT (ms):                           17.75     
 ==================================================
 ```
