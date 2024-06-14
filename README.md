@@ -78,7 +78,7 @@ python -m vllm.entrypoints.openai.api_server \
     --disable-log-requests
 ```
 
-#### Run the Benchmark
+### Benchmark
 
 We can use the same script, just swapping out the model. We run 1 query per second.
 
