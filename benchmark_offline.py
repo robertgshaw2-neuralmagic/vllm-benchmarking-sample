@@ -7,7 +7,9 @@ from vllm import LLM, SamplingParams
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", type=str, default="meta-llama/Meta-Llama-3-8B-Instruct")
 parser.add_argument("--max-generated-tokens", type=int, default=250)
-parser.add_argument("--num-samples", type=int, default=100)
+parser.add_argument("--num-samples", type=int, default=1000)
+parser.add_argument("--max-num-seqs", type=int, default=256)
+parser.add_argument("--kv-cache-dtype", type=str, default="auto")
 
 DATASET_ID = "HuggingFaceH4/ultrachat_200k"
 NUM_TURNS_PROMPT = 3
@@ -16,7 +18,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
     MODEL_ID = args.model
     MAX_GENERATED_TOKENS = args.max_generated_tokens
+    MAX_NUM_SEQS = args.max_num_seqs
     NUM_SAMPLES = args.num_samples
+    KV_CACHE_DTYPE = args.kv_cache_dtype
 
     # Pre-process your dataset.
     # Its a good idea to use the chat template.
@@ -39,7 +43,11 @@ if __name__ == "__main__":
     ]
 
     # Initialize vLLM
-    model = LLM(MODEL_ID)
+    model = LLM(
+        MODEL_ID,
+        max_num_seqs=MAX_NUM_SEQS,
+        kv_cache_dtype=KV_CACHE_DTYPE
+    )
 
     # Generate.
     start = time.perf_counter()
@@ -60,15 +68,14 @@ if __name__ == "__main__":
         total_prompt_tokens += len(generation.prompt_token_ids)
         total_generation_tokens += len(generation.outputs[0].token_ids)
 
-    print("==========================================================")
-    print(f"=== Total Time: \t\t{total_time: 0.2f}")
-    print(f"=== Total Generations: \t\t{total_generations}")
+    print("* ==========================================================")
+    print(f"* Total Time: \t\t{total_time: 0.2f}")
+    print(f"* Total Generations: \t\t{total_generations}")
     print("\n")
-    print(f"=== Generations / Sec: \t\t{total_generations / total_time :0.2f}")
-    print(f"=== Generation Tok / Sec: \t{total_generation_tokens / total_time :0.2f}")
-    print(f"=== Prompt Tok / Sec: \t\t{total_prompt_tokens / total_time :0.2f}")
+    print(f"* Generations / Sec: \t\t{total_generations / total_time :0.2f}")
+    print(f"* Generation Tok / Sec: \t{total_generation_tokens / total_time :0.2f}")
+    print(f"* Prompt Tok / Sec: \t\t{total_prompt_tokens / total_time :0.2f}")
     print("\n")
-    print(f"=== Avg Generation Tokens: \t{total_generation_tokens / total_generations :0.2f}")
-    print(f"=== Avg Prompt Tokens: \t\t{total_prompt_tokens / total_generations :0.2f}")
-
-    print("==========================================================")
+    print(f"* Avg Generation Tokens: \t{total_generation_tokens / total_generations :0.2f}")
+    print(f"* Avg Prompt Tokens: \t\t{total_prompt_tokens / total_generations :0.2f}")
+    print("* ==========================================================")
