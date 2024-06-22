@@ -10,6 +10,7 @@ parser.add_argument("--max-generated-tokens", type=int, default=250)
 parser.add_argument("--num-samples", type=int, default=1000)
 parser.add_argument("--max-num-seqs", type=int, default=256)
 parser.add_argument("--kv-cache-dtype", type=str, default="auto")
+parser.add_argument("--gpu-memory-utilization", type=float, default=None)
 
 DATASET_ID = "HuggingFaceH4/ultrachat_200k"
 NUM_TURNS_PROMPT = 3
@@ -21,6 +22,7 @@ if __name__ == "__main__":
     MAX_NUM_SEQS = args.max_num_seqs
     NUM_SAMPLES = args.num_samples
     KV_CACHE_DTYPE = args.kv_cache_dtype
+    GPU_MEMORY_UTILIZATION = args.gpu_memory_utilization
 
     # Pre-process your dataset.
     # Its a good idea to use the chat template.
@@ -46,7 +48,8 @@ if __name__ == "__main__":
     model = LLM(
         MODEL_ID,
         max_num_seqs=MAX_NUM_SEQS,
-        kv_cache_dtype=KV_CACHE_DTYPE
+        kv_cache_dtype=KV_CACHE_DTYPE,
+        gpu_memory_utilization=GPU_MEMORY_UTILIZATION,
     )
 
     # Generate.
