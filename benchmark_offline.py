@@ -10,7 +10,7 @@ parser.add_argument("--max-generated-tokens", type=int, default=250)
 parser.add_argument("--num-samples", type=int, default=1000)
 parser.add_argument("--max-num-seqs", type=int, default=256)
 parser.add_argument("--kv-cache-dtype", type=str, default="auto")
-parser.add_argument("--gpu-memory-utilization", type=float, default=None)
+parser.add_argument("--gpu-memory-utilization", type=float, default=.9)
 
 DATASET_ID = "HuggingFaceH4/ultrachat_200k"
 NUM_TURNS_PROMPT = 3
@@ -72,7 +72,7 @@ if __name__ == "__main__":
         total_generation_tokens += len(generation.outputs[0].token_ids)
 
     print("* ==========================================================")
-    print(f"* Total Time: \t\t{total_time: 0.2f}")
+    print(f"* Total Time: \t\t\t{total_time: 0.2f}")
     print(f"* Total Generations: \t\t{total_generations}")
     print("\n")
     print(f"* Generations / Sec: \t\t{total_generations / total_time :0.2f}")

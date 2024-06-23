@@ -39,7 +39,7 @@ if __name__ == "__main__":
     ds = ds.map(preprocess)
 
     # BE CAREFUL WITH THE TOKENIZER
-    #   apply_chat_template already adds the bos_token
+    #   apply_chat_template already adds the bos_token for meta-llama
     #   so we set add_special_token to false
     examples = [
         tokenizer(
