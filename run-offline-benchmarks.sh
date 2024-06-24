@@ -1,7 +1,7 @@
 MODELS=("meta-llama/Meta-Llama-3-8B-Instruct" "nm-testing/Meta-Llama-3-8B-Instruct-GPTQ" "nm-testing/Meta-Llama-3-8B-Instruct-W8A8-Dyn-Per-Token")
 MAX_NUM_SEQS=256
 
-for model in ${MODELS[@]}; do
+for MODEL in ${MODELS[@]}; do
     echo "\n\n"
     echo "* ==================================================================================== *"
 
