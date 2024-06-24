@@ -7,6 +7,7 @@ for MODEL in ${MODELS[@]}; do
     echo "* ==================================================================================== *"
 
     echo "* === RUNNING ${MODEL} WITH MAX_NUM_SEQS=${MAX_NUM_SEQS}"
+    echo "python benchmark/benchmark_offline.py --model ${MODEL} --max-num-seqs ${MAX_NUM_SEQS}"
     python benchmark/benchmark_offline.py --model ${MODEL} --max-num-seqs ${MAX_NUM_SEQS}
     
     echo "* ==================================================================================== *"
